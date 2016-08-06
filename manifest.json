@@ -52,8 +52,8 @@
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
-    "default_title": "chrome",
-    "default_popup": "popup.html"
+    "default_title": "Oracle",
+    "default_popup": "index.html"
   },
   "web_accessible_resources": [
     "images/icon-48.png"
