@@ -15,11 +15,6 @@ const styles = {
     color: '#444'
 }
 
-
-/**
- * The Root Component for our Application
- *
- */
 class Oracle extends React.Component {
   constructor(props) {
     super(props);
