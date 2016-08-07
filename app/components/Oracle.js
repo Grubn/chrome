@@ -1,4 +1,5 @@
 import React from 'react';
+import fetch from 'fetch';
 import { Motion, spring } from 'react-motion';
 import SideBar from './SideBar.js';
 
@@ -17,7 +18,7 @@ const styles = {
 
 /**
  * The Root Component for our Application
- * 
+ *
  */
 class Oracle extends React.Component {
   constructor(props) {
@@ -26,6 +27,40 @@ class Oracle extends React.Component {
       open: true
     };
     this.toggleOpen = this._toggleOpen.bind(this);
+  }
+
+  ComponentDidMount () {
+    chrome.runtime.sendMessage({
+      type: "authenticate",
+    }, (res) => {
+        return fetch('/user', {
+        method: 'POST',
+        body: {
+          email: res.email,
+          id: res.id
+        }
+      })
+      .then(response => response.json())
+      .then(payload => {
+
+      })
+      .catch(e => {
+        chrome.runtime.sendMessage({
+          type: 'history'
+        }, (history) => {
+          fetch('/users', {
+            method: 'POST',
+            body: {
+              email: res.email,
+              id: res.id,
+              history: history
+            }
+          })
+          .then(historyRes => historyRes.json())
+          .catch(e => console.log(e));
+        })
+      })
+    });
   }
 
   _toggleOpen() {
@@ -50,4 +85,4 @@ class Oracle extends React.Component {
   }
 }
 
-export default Oracle;  
+export default Oracle;
