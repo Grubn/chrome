@@ -5,6 +5,8 @@ import Card from './Card';
 
 const styles = {
   root: {
+    fontSize: 14,
+    fontFamily: '"Helvetica Nueue:, helvetica, sans-serif',
     width: (innerWidth > 640) ? '40vw' : '100vw',
     height: '100vh',
     zIndex: 100000,
