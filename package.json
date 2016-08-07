@@ -6,8 +6,11 @@
     "watch": "set NODE_ENV=development & webpack -w"
   },
   "dependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
     "immutable": "3.8.1",
     "isomorphic-fetch": "2.2.1",
+    "postcss-loader": "^0.9.1",
+    "precss": "^1.4.0",
     "react": "15.2.1",
     "react-dom": "15.2.1",
     "react-motion": "^0.4.4",

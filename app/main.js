@@ -1,8 +1,11 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import { render } from 'react-dom';
-import Oracle from './../components/Oracle';
-import configureStore from './../store/store.js';
+import Oracle from './components/Oracle';
+import configureStore from './store/store.js';
+
+import './css';
+
 var store = configureStore();
 
 const root = (

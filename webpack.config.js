@@ -1,11 +1,14 @@
 var path = require('path');
 var webpack = require('webpack');
 var CompressionPlugin = require("compression-webpack-plugin");
+var precss = require('precss');
+var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
   devtool: 'eval',
   entry: [
-    './app/containers/App.js'
+    './app/main.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -21,12 +24,16 @@ var config = {
         exclude: /(node_modules|bower_components)/
       },
       {
-        test: /(\.scss|\.css)$/,
-        loader: 'style!css!sass'
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
       }
     ]
   },
+  postcss: [
+    precss()
+  ],
   plugins: [
+    new ExtractTextPlugin('main.min.css'),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin()
   ]
@@ -53,6 +60,10 @@ if (env && env.match(/production/)) {
         }
       }),
       new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
+    ],
+    postcss: [
+      ...config.postcss,
+      autoprefixer()
     ]
   })
 }

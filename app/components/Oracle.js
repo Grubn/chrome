@@ -13,7 +13,10 @@ const styles = {
     right: 0,
     display: 'flex',
     justifyContent: 'flex-end',
-    color: '#444'
+    color: '#444',
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 16,
+    fontWeight: 300
 }
 
 class Oracle extends React.Component {

@@ -37,6 +37,7 @@
       "js": [
         "dist/bundle.js"
       ],
+      "css": ["dist/main.min.css"],
       "run_at": "document_end",
       "all_frames": false
     }
