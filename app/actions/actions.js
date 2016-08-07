@@ -31,6 +31,6 @@ export function queryNLP(email, content) {
       })
     })
     .then(res => res.json())
-    .then(response => dispatch(storeNLP(I.fromJS(response))));
+    .then(response => dispatch(storeNLP(response)));
   }
 }

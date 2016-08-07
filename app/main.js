@@ -6,12 +6,14 @@ import Oracle from './components/Oracle';
 import configureStore from './store/store.js';
 
 import './css';
+var installDevTools = require("immutable-devtools");
+installDevTools(I);
 
 // DO NOT DELETE - KENNET
 var rootContent = document.body.innerHTML.replace(/(<div\s*id="app-oracle.*<\/div>)|(<style((.*|[\n\r\s\t])*)<\/style\s*>)|(<script((.*|[\n\r\s\t])*)<\/script\s*>)/,'');  // DO NOT DELETE - KENNET
 // DO NOT DELETE - KENNET
 console.log('Main root content: ', rootContent);
-var store = configureStore(I.Map({}));
+var store = configureStore();
 
 const root = (
   <Provider store={store}>

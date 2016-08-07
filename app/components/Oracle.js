@@ -35,45 +35,9 @@ class Oracle extends React.Component {
   }
 
   componentDidMount () {
-    // chrome.runtime.sendMessage({
-    //   type: "authenticate",
-    // }, {}, (res) => {
-    //     console.log('res from content:', res.email);
-    //     return fetch(`${ngrok}/user`, {
-    //     method: 'POST',
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //       email: res.email,
-    //       googleId: res.id
-    //     })
-    //   })
-    //   .then(response => response.json())
-    //   .then(payload => {
-    //
-    //   })
-    //   .catch(e => {
-    //     chrome.runtime.sendMessage({
-    //       type: 'history'
-    //     }, {}, (history) => {
-    //       console.log('res history: ', res);
-    //       fetch(`/${ngrok}/users`, {
-    //         method: 'POST',
-    //         headers: {
-    //           "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({
-    //           email: res.email,
-    //           googleId: res.id,
-    //           history: history
-    //         })
-    //       })
-    //       .then(historyRes => historyRes.json())
-    //       .catch(e => console.log(e));
-    //     })
-    //   })
-    // });
+    console.log('oravle before CDM: ', this.props.nlp);
+    this.props.queryNLP(this.props.email, this.props.rootContent);
+    console.log('orcacle after CDM: ', this.props.nlp);
     chrome.runtime.sendMessage({
       type: "authenticate",
     }, {}, (res) => {
@@ -132,7 +96,6 @@ class Oracle extends React.Component {
           right: 8,
           zIndex: 100000
         }} onTrigger={() => {
-          this.props.queryNLP(this.props.email, this.props.rootContent);
           this.setState({ animation: 1 });
           setTimeout(() => {
             this.setState({ animation: 2 });
@@ -143,7 +106,7 @@ class Oracle extends React.Component {
         } }/>
         <div style={Object.assign({}, styles, {zIndex: this.state.open ? 10000 : -10000})}>
         <div style={{ flex: 1 }} onClick={this.toggleOpen} />
-        <SideBar open={(this.state.animation === 2 && open)} cards={this.props.nlp}/>
+        <SideBar open={this.state.open} cards={this.props.nlp}/>
         </div>
       </div>
     );
@@ -153,9 +116,9 @@ class Oracle extends React.Component {
 function mapStateToProps (state) {
   return {
     // loading: state.loading,
-    email: state.get('email'),
-    id: state.get('id'),
-    nlp: state.get('nlp')
+    email: state.email,
+    id: state.id,
+    nlp: state.nlp
   };
 }
 

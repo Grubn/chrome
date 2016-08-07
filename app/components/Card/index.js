@@ -2,48 +2,51 @@ import React from 'react';
 
 import IframeCard from './IframeCard.js';
 import RatingCard from './RatingCard.js';
-import CardToolbar from './CardToolbar';
+import TweetCard from './TweetCard.js';
 import ArticleCard from './ArticleCard.js';
-import StarRatingComponent from 'react-star-rating-component';
+
 
 function Card(props) {
   let inner = null;
+  console.log('data prop', props.data);
 
-  switch (props.data.get('type')) {
+  switch (props.data.metadata.type) {
     case 'google-maps':
-    case 'youtube-video':
-    case 'google-calendar':
-      inner = (<IframeCard data={props.data.get('data')}
-                           type={props.data.getIn(['metadata', 'type'])}
-                           term={props.data.get(['metadata', 'term'])}
-                           category={this.data.get(['metadata', 'category'])}/>);
+      inner = (<IframeCard data={props.data.data}
+                           type={props.data.metadata.type}
+                           term={props.data.metadata.term}
+                           category={this.data.metadata.category}/>);
       break;
+
+    case 'youtube-video':
+      inner = (<IframeCard link={props.data.data.link}
+                           name={props.data.data.name}
+                           type={props.data.metadata.type}
+                           term={props.data.metadata.term}
+                           category={this.data.metadata.category}/>);
     case 'twitter-tweet':
-      inner = (<RatingCard author={props.data.getIn(['data', 'author'])}
-                           authorImage={props.data.getIn(['data', 'authorImage'])}
-                           tweet={props.data.getIn(['data', 'tweet'])}
-                           type={props.data.getIn(['metadata', 'type'])}
-                           term={props.data.getIn(['metadata', 'term'])}
-                           category={props.data.getIn(['metadata', 'category'])}/>);
+      inner = (<TweetCard author={props.data.data.author}
+                           authorImage={props.data.data.authorImage}
+                           tweet={props.data.data.tweet}
+                           type={props.data.metadata.type}
+                           term={props.data.metadata.term}
+                           category={props.data.metadata.category}/>);
       break;
     case 'wikipedia-information':
-      inner = (<ArticleCard data={props.data.get('data')}
-                            type={props.data.getIn(['metadata', 'type'])}
-                            term={props.data.getIn(['metadata', 'term'])}
-                            category={props.data.getIn(['metadata', 'category'])}
+      inner = (<ArticleCard data={props.data.data}
+                            type={props.data.metadata.type}
+                            term={props.data.metadata.term}
+                            category={props.data.metadata.category}
                             />);
       break;
     case 'yelp-information':
-      inner = (<RatingCard name={props.data.getIn(['data', 'name'])}
-                           authorImage={props.data.getIn(['data', 'authorImage'])}
-                           description={props.data.getIn(['data', 'description'])}
-                           type={props.data.getIn(['metadata', 'type'])}
-                           term={props.data.getIn(['metadata', 'term'])}
-                           category={props.data.getIn(['metadata', 'category'])}
+      inner = (<RatingCard name={props.data.data.name}
+                           authorImage={props.data.data.authorImage}
+                           description={props.data.data.description}
+                           type={props.data.metadata.type}
+                           term={props.data.metadata.term}
+                           category={props.data.metadata.category}
                 />)
-      break;
-    case 'uber-request':
-      inner = <p></p>;
       break;
   }
   return (

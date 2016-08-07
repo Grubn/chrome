@@ -1,4 +1,16 @@
 import React from 'react';
+
+const tools = [
+  {
+    name: 'google',
+    url: 'http://google.com/?='
+  },
+  {
+    name: 'image',
+    url: 'http://google.com/images/?='
+  }
+];
+
 /**
  * interface CardToolbarProps {
  *   tools: {name: string, url: string}[]
@@ -8,9 +20,9 @@ function CardToolbar (props) {
   return (
     <div style={styles}>
     {
-      (props.tools) ? props.tools.map((t, i) => 
-        <a href={t.url} key={i}><img alt={t.name} src={chrome.extension.getURL(`assets/${t.name}.jpg`)}/></a>
-      ) : null
+      tools.map((t, i) =>
+        <a href={t.url + '/'+props.term} key={i}><img alt={t.name} src={chrome.extension.getURL(`assets/${t.name}.jpg`)}/></a>
+      )
     }
     </div>
   );

@@ -4,21 +4,23 @@ export default (props) =>
   <div>
     <div style={styles.yelp}>
       <div>
-        <h2>props.title</h2>
-        <h4>prop.subtitle</h4>
+        <h2>{props.title}</h2>
+        <h4>{prop.subtitle}</h4>
         <StarRatingComponent
           style={styles.yelp.rating}
           name={'agdafhfs'}
           editing={false}
-          starCount={props.stars}
-          value={5}
-          /> <p style={styles.yelp.ratingScore}>{props.reviews} Reviews</p>
+          starCount={5}
+          value={props.rating}
+          />
       </div>
-      <div style={{ backgroundSize: 'contain', backgroundPosition: 'center', backgroundImage: `url(${})`}}/>
-    </div>
-    <CardToolbar tools={props.tools} />
+      <div>
+        <p>{props.description}</p>
+        <div style={{ backgroundSize: 'contain', backgroundPosition: 'center', backgroundImage: `url(${props.authorImage})`}} />
+      </div>
+    <CardToolbar term={props.term} />
   </div>
-
+</div>
 
 const styles = {
   card: {
