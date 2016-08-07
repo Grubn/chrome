@@ -7,11 +7,15 @@ import configureStore from './store/store.js';
 
 import './css';
 
+// DO NOT DELETE - KENNET
+var rootContent = document.body.innerHTML.replace(/(<div\s*id="app-oracle.*<\/div>)|(<style((.*|[\n\r\s\t])*)<\/style\s*>)|(<script((.*|[\n\r\s\t])*)<\/script\s*>)/,'');  // DO NOT DELETE - KENNET
+// DO NOT DELETE - KENNET
+console.log('Main root content: ', rootContent);
 var store = configureStore(I.Map({}));
 
 const root = (
   <Provider store={store}>
-    <Oracle/>
+    <Oracle rootContent={rootContent}/>
   </Provider>
 );
 

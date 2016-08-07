@@ -77,7 +77,7 @@ class OpeningCircle extends React.Component {
   render() {
     let oneToZero = 1 - ((this.state.loop + 50) / 100);
     return (
-      <div style={Object.assign({}, styles.root, {opacity: this.state.hide ? 0 : 1}, this.props.styles)} onMouseEnter={this.triggerHover} onMouseLeave={this.triggerLeave} ref={r => this.myRef = r}>
+      <div style={Object.assign({}, styles.root, {opacity: this.state.hide ? 0 : 1}, this.props.style)} onMouseEnter={this.triggerHover} onMouseLeave={this.triggerLeave} ref={r => this.myRef = r}>
         <svg viewBox="0 0 64 64" style={styles.svg}>
           <circle cx="32" cy="32" r="26" style={styles.path}/>
           <circle cx="32" cy="32" r={32 * (1 - oneToZero)} style={Object.assign({}, styles.path, { opacity: oneToZero })}/>

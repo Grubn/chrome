@@ -7,38 +7,77 @@ import { Motion, spring } from 'react-motion';
 import SideBar from './SideBar.js';
 import Loading from './hidden/Loading.js';
 import OpeningCircle from './hidden/OpeningCircle.js';
+import { ngrok } from './../misc/ngrok.js';
 
 const styles = {
-    zIndex: 10000,
-    width: '100vw',
-    height: '100vh',
-    position: 'fixed',
-    top: 0,
-    right: 0,
-    display: 'flex',
-    justifyContent: 'flex-end',
-    color: '#444',
-    fontFamily: "'Roboto', sans-serif",
-    fontSize: 16,
-    fontWeight: 300
+  zIndex: 10000,
+  width: '100vw',
+  height: '100vh',
+  position: 'fixed',
+  top: 0,
+  right: 0,
+  display: 'flex',
+  justifyContent: 'flex-end',
+  color: '#444',
+  fontFamily: "'Roboto', sans-serif",
+  fontSize: 16,
+  fontWeight: 300
 }
 
 class Oracle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true
+      open: false,
+      animation: 0
     };
     this.toggleOpen = this._toggleOpen.bind(this);
   }
 
   componentDidMount () {
-    console.log('content for html: ',rootContent);
+    // chrome.runtime.sendMessage({
+    //   type: "authenticate",
+    // }, {}, (res) => {
+    //     console.log('res from content:', res.email);
+    //     return fetch(`${ngrok}/user`, {
+    //     method: 'POST',
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     },
+    //     body: JSON.stringify({
+    //       email: res.email,
+    //       googleId: res.id
+    //     })
+    //   })
+    //   .then(response => response.json())
+    //   .then(payload => {
+    //
+    //   })
+    //   .catch(e => {
+    //     chrome.runtime.sendMessage({
+    //       type: 'history'
+    //     }, {}, (history) => {
+    //       console.log('res history: ', res);
+    //       fetch(`/${ngrok}/users`, {
+    //         method: 'POST',
+    //         headers: {
+    //           "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({
+    //           email: res.email,
+    //           googleId: res.id,
+    //           history: history
+    //         })
+    //       })
+    //       .then(historyRes => historyRes.json())
+    //       .catch(e => console.log(e));
+    //     })
+    //   })
+    // });
     chrome.runtime.sendMessage({
       type: "authenticate",
     }, {}, (res) => {
-        console.log('res from content:', res.email);
-        return fetch('https://7134cc58.ngrok.io/user', {
+        return fetch(`${ngrok}/user`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -59,7 +98,7 @@ class Oracle extends React.Component {
         }, {}, (history) => {
           var trimmed = [history[0], history[1], history[2], history[3], history[4], history[5], history[6], history[7] ,history[8], history[9]];
           console.log('res history: ', res);
-          fetch('https://7134cc58.ngrok.io/users', {
+          fetch(`${ngrok}/users`, {
             method: 'POST',
             headers: {
               "Content-Type": "application/json"
@@ -86,24 +125,30 @@ class Oracle extends React.Component {
   // and then after a 1 sec delay the cards slide out from the right to the left.
   render() {
     return (
-      <Motion
-        defaultStyle={{ opacity: 0 }}
-        style={{ opacity: spring((this.state.open) ? 1 : 0, { stiffness: 10, damping: 10 }), zIndex: (this.state.open) ? 10000 : -10000 }}>
-        {
-          (iStyle) =>
-            <div style={Object.assign({}, styles, iStyle)}>
-              <div style={{flex: 1}} onClick={this.toggleOpen}>
-                <OpeningCircle onTrigger={() => this.props.queryNLP(this.props.email, rootContent)}/>
-              </div>
-              <SideBar {...Object.assign({}, this.state, this.props)}/>
-            </div>
-        }
-      </Motion>
+      <div>
+        <OpeningCircle style={{
+          position: 'fixed',
+          bottom: 8,
+          right: 8,
+          zIndex: 100000
+        }} onTrigger={() => {
+          this.props.queryNLP(this.props.email, this.props.rootContent);
+          this.setState({ animation: 1 });
+          setTimeout(() => {
+            this.setState({ animation: 2 });
+            setTimeout(() => {
+              this.setState({ open: true });
+            })
+          })
+        } }/>
+        <div style={Object.assign({}, styles, {zIndex: this.state.open ? 10000 : -10000})}>
+        <div style={{ flex: 1 }} onClick={this.toggleOpen}/>
+        <SideBar {...Object.assign({}, this.state, this.props) }/>
+        </div>
+      </div>
     );
   }
 }
-
-var rootContent = document.getElementsByTagName('html')[0];
 
 function mapStateToProps (state) {
   return {
