@@ -23,28 +23,30 @@ class SideBar extends React.Component {
   render() {
     return (
       <Motion
-        defaultStyle={{ transform: 100 }}
-        style={{ transform: spring((this.props.open) ? 0 : 100, { stiffness: 100, damping: 25 }) }}>
+        defaultStyle={{ transform: 100, opacity: 0 }}
+        style={{ transform: spring((this.props.open) ? 0 : 460), opacity: spring((this.props.open) ? 1 : 0) }}>
         {
           (iStyle) =>
-            <div style={Object.assign({}, styles.root, { transform: `translateX(${iStyle.transform}vw)` })}>
-              <StaggeredMotion
-                defaultStyles={this.props.cards.map((c) => ({ x: 1 }))}
-                styles={(pStyles) =>
-                  pStyles.map((_, i) =>
-                    (i === 0) ? { x: spring(0) } :
-                      { x: spring(pStyles[i - 1]['x']) })}>
-                {
-                  (sStyles) =>
-                    (<div style={styles.cardContainer}>
-                      {
-                        sStyles.map((sStyle, j) =>
-                          <Card style={{ opacity: (1 - sStyle.x), transform: `translateY(${sStyle.x * 64}px)` }} key={j} {...this.props.cards[j]}/>
-                        )
-                      }
-                    </div>)
-                }
-              </StaggeredMotion>
+            <div style={Object.assign({}, styles.root, { opacity: iStyle.opacity, transform: `translateX(${iStyle.transform}px)` })}>
+              <Card><input placeholder="Search Google"/></Card>
+                  <StaggeredMotion
+                    defaultStyles={this.props.cards.map((c) => ({ x: 1 }))}
+                    styles={(pStyles) =>
+                      pStyles.map((_, i) =>
+                        (i === 0) ? { x: spring((this.props.open) ? 0 : 1) } :
+                          { x: spring(pStyles[i - 1]['x']) })}>
+                    {
+                      (sStyles) =>
+                        (<div style={styles.cardContainer}>
+                          {
+                            sStyles.map((sStyle, j) =>
+                              <Card style={{ opacity: (1 - sStyle.x), transform: `translateX(${sStyle.x * 64}px)` }} key={j} {...this.props.cards[j]}/>
+                            )
+                          }
+                        </div>)
+                    }
+                  </StaggeredMotion>
+              }
             </div>
         }
       </Motion>
@@ -56,9 +58,9 @@ SideBar.defaultProps = {
     {
       type: 'google-maps',
       data: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12159.142495365222!2d-74.165099!3d40.36927755!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1470541281416',
-      tools: [{name: 'google', url: ''}],
+      tools: [{ name: 'google', url: '' }],
       title: 'My Location'
-  }, {
+    }, {
       type: 'yelp-information',
       data: '',
       tools: []

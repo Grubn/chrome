@@ -7,21 +7,19 @@ import CardToolbar from './CardToolbar';
 import StarRatingComponent from 'react-star-rating-component';
 
 function Card(props) {
-  let inner = 'hi';
+  let inner = null;
 
   switch (props.type) {
     case 'google-maps':
     case 'youtube-video':
+    case 'google-calendar':
       inner = (<IframeCard {...props}/>);
       break;
-    case 'google-calendar':
-      inner = <p></p>;
-      break;
     case 'twitter-tweet':
-      inner = <p></p>;
+      inner = (<RatingCard {...props}/>);
       break;
     case 'wikipedia-information':
-      inner = <p></p>;
+      inner = (<ArticleCard {...props}/>);
       break;
     //case 'yelp-information':
       //inner = (<RatingCard data={props.data}/>)
@@ -33,6 +31,7 @@ function Card(props) {
   return (
     <div style={Object.assign({}, props.style, styles.card)}>
       {inner}
+      {this.props.children}
     </div>
   );
 }

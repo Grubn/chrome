@@ -4,17 +4,17 @@ export default (props) =>
   <div>
     <div style={styles.yelp}>
       <div>
-        <h2>Crif Dogs</h2>
-        <h4>Hot Dogs, American</h4>
+        <h2>props.title</h2>
+        <h4>prop.subtitle</h4>
         <StarRatingComponent
           style={styles.yelp.rating}
-          name="yelpRating"
+          name={'agdafhfs'}
           editing={false}
-          starCount={5}
+          starCount={props.stars}
           value={5}
-          /> <p style={styles.yelp.ratingScore}>1879 Reviews</p>
+          /> <p style={styles.yelp.ratingScore}>{props.reviews} Reviews</p>
       </div>
-      <img src="http://newyork.seriouseats.com/images/20081216-crifdogs-goodmorning.jpg" width="50px" height="50px"/>
+      <div style={{ backgroundSize: 'contain', backgroundPosition: 'center', backgroundImage: `url(${})`}}/>
     </div>
     <CardToolbar tools={props.tools} />
   </div>

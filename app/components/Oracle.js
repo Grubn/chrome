@@ -66,7 +66,7 @@ class Oracle extends React.Component {
   }
 
   _toggleOpen() {
-    return this.setState({ open: !this.state.open });
+    return this.setState({ open: !this.state.open, animation: 0 });
   }
 
   // If it's closed, we should display a circle that pulses, and fades away unless you're close to it.
@@ -90,8 +90,8 @@ class Oracle extends React.Component {
           })
         } }/>
         <div style={Object.assign({}, styles, {zIndex: this.state.open ? 10000 : -10000})}>
-        <div style={{ flex: 1 }} onClick={this.toggleOpen}/>
-        <SideBar {...Object.assign({}, this.state, this.props) }/>
+        <div style={{ flex: 1 }} onClick={this.toggleOpen} style={borderRight: () }/>
+        <SideBar open={(this.state.animation === 2 && open)}/>
         </div>
       </div>
     );
