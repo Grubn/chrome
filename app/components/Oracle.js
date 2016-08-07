@@ -1,5 +1,5 @@
 import React from 'react';
-import fetch from 'fetch';
+import fetch from 'isomorphic-fetch';
 import { Motion, spring } from 'react-motion';
 import SideBar from './SideBar.js';
 
@@ -30,37 +30,37 @@ class Oracle extends React.Component {
   }
 
   ComponentDidMount () {
-    chrome.runtime.sendMessage({
-      type: "authenticate",
-    }, (res) => {
-        return fetch('/user', {
-        method: 'POST',
-        body: {
-          email: res.email,
-          id: res.id
-        }
-      })
-      .then(response => response.json())
-      .then(payload => {
-
-      })
-      .catch(e => {
-        chrome.runtime.sendMessage({
-          type: 'history'
-        }, (history) => {
-          fetch('/users', {
-            method: 'POST',
-            body: {
-              email: res.email,
-              id: res.id,
-              history: history
-            }
-          })
-          .then(historyRes => historyRes.json())
-          .catch(e => console.log(e));
-        })
-      })
-    });
+    // chrome.runtime.sendMessage({
+    //   type: "authenticate",
+    // }, (res) => {
+    //     return fetch('/user', {
+    //     method: 'POST',
+    //     body: {
+    //       email: res.email,
+    //       id: res.id
+    //     }
+    //   })
+    //   .then(response => response.json())
+    //   .then(payload => {
+    //
+    //   })
+    //   .catch(e => {
+    //     chrome.runtime.sendMessage({
+    //       type: 'history'
+    //     }, (history) => {
+    //       fetch('/users', {
+    //         method: 'POST',
+    //         body: {
+    //           email: res.email,
+    //           id: res.id,
+    //           history: history
+    //         }
+    //       })
+    //       .then(historyRes => historyRes.json())
+    //       .catch(e => console.log(e));
+    //     })
+    //   })
+    // });
   }
 
   _toggleOpen() {
