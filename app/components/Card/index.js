@@ -1,5 +1,9 @@
 import React from 'react';
+
+import IframeCard from './IframeCard.js';
+
 import CardToolbar from './CardToolbar';
+
 import StarRatingComponent from 'react-star-rating-component';
 
 function Card(props) {
@@ -8,47 +12,41 @@ function Card(props) {
   switch (props.type) {
     case 'google-maps':
     case 'youtube-video':
-    inner = (
-      <div>
-        <h2 style={styles.mapHeader}>2211 Portofino Drive, Homestead, FL</h2>
-        <iframe src={props.data} width='100%' height='250px' frameBorder='0'></iframe>
-        <CardToolbar />
-      </div>
-    );
-    break;
+      inner = (<IframeCard data={props.data} />);
+      break;
     case 'google-calendar':
-    inner = <p></p>;
-    break;
+      inner = <p></p>;
+      break;
     case 'twitter-tweet':
-    inner = <p></p>;
-    break;
+      inner = <p></p>;
+      break;
     case 'wikipedia-information':
-    inner = <p></p>;
-    break;
+      inner = <p></p>;
+      break;
     case 'yelp-information':
-    inner = (
-      <div>
-        <div style={styles.yelp}>
-          <div>
-            <h2 style={styles.yelp.title}>Crif Dogs</h2>
-            <p style={styles.yelp.subTitle}>Hot Dogs, American</p>
+      inner = (
+        <div>
+          <div style={styles.yelp}>
+            <div>
+              <h2>Crif Dogs</h2>
+              <h4>Hot Dogs, American</h4>
               <StarRatingComponent
-                          style={styles.yelp.rating}
-                          name="yelpRating"
-                          editing={false}
-                          starCount={5}
-                          value={5}
-              /> <p style={styles.yelp.ratingScore}>1879 Reviews</p>
+                style={styles.yelp.rating}
+                name="yelpRating"
+                editing={false}
+                starCount={5}
+                value={5}
+                /> <p style={styles.yelp.ratingScore}>1879 Reviews</p>
+            </div>
+            <img src="http://newyork.seriouseats.com/images/20081216-crifdogs-goodmorning.jpg" width="50px" height="50px"/>
           </div>
-          <img src="http://newyork.seriouseats.com/images/20081216-crifdogs-goodmorning.jpg" width="50px" height="50px"/>
+          <CardToolbar />
         </div>
-        <CardToolbar />
-      </div>
-    );
-    break;
+      );
+      break;
     case 'uber-request':
-    inner = <p></p>;
-    break;
+      inner = <p></p>;
+      break;
   }
   return (
     <div style={Object.assign({}, props.style, styles.card)}>
@@ -64,11 +62,6 @@ const styles = {
     margin: 10,
     flex: 1,
     padding: 0
-  },
-  mapHeader: {
-    margin: 0,
-    padding: '18px 20px',
-    color: '#333'
   },
   yelp: {
     padding: '12px 20px',

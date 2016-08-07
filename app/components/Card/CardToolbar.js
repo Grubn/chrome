@@ -1,9 +1,17 @@
 import React from 'react';
-
+/**
+ * interface CardToolbarProps {
+ *   tools: {name: string, url: string}[]
+ * }
+ */
 function CardToolbar (props) {
   return (
     <div style={styles.toolbar}>
-      <p>Card Toolbar</p>
+    {
+      props.tools.map((t, i) => {
+        <a href={t.url}>{name}</a>
+      })
+    }
     </div>
   );
 }
