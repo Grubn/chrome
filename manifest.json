@@ -1,8 +1,8 @@
 {
-  "name": "__MSG_appName__",
+  "name": "Oracle",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "__MSG_appDescription__",
+  "description": "Oracle a better browsing experience.",
   "icons": {
   },
   "background": {
@@ -22,6 +22,8 @@
     "notifications",
     "pageCapture",
     "storage",
+    "identity",
+    "identity.email",
     "webNavigation",
     "webRequest",
     "history",

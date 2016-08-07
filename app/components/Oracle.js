@@ -30,37 +30,45 @@ class Oracle extends React.Component {
   }
 
   componentDidMount () {
-    // chrome.runtime.sendMessage({
-    //   type: "authenticate",
-    // }, (res) => {
-    //     return fetch('/user', {
-    //     method: 'POST',
-    //     body: {
-    //       email: res.email,
-    //       id: res.id
-    //     }
-    //   })
-    //   .then(response => response.json())
-    //   .then(payload => {
-    //
-    //   })
-    //   .catch(e => {
-    //     chrome.runtime.sendMessage({
-    //       type: 'history'
-    //     }, (history) => {
-    //       fetch('/users', {
-    //         method: 'POST',
-    //         body: {
-    //           email: res.email,
-    //           id: res.id,
-    //           history: history
-    //         }
-    //       })
-    //       .then(historyRes => historyRes.json())
-    //       .catch(e => console.log(e));
-    //     })
-    //   })
-    // });
+    chrome.runtime.sendMessage({
+      type: "authenticate",
+    }, {}, (res) => {
+        console.log('res from content:', res.email);
+        return fetch('https://49bf5a9f.ngrok.io/user', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: res.email,
+          googleId: res.id
+        })
+      })
+      .then(response => response.json())
+      .then(payload => {
+
+      })
+      .catch(e => {
+        chrome.runtime.sendMessage({
+          type: 'history'
+        }, {}, (history) => {
+          console.log('res history: ', res);
+          fetch('https://49bf5a9f.ngrok.io/users', {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: res.email,
+              googleId: res.id,
+              history: history
+            })
+          })
+          .then(historyRes => historyRes.json())
+          .catch(e => console.log(e));
+        })
+      })
+    });
   }
 
   _toggleOpen() {
