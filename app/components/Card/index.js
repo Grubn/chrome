@@ -67,7 +67,7 @@ const styles = {
   },
   mapHeader: {
     margin: 0,
-    padding: 10,
+    padding: '18px 20px',
     color: '#333'
   },
   yelp: {
