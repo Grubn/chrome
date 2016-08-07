@@ -7,11 +7,17 @@
       switch (message.type) {
 
         case "authenticate":
-          return chrome.identity.getProfileUserInfo((res) => sendResponse(res));
-
-        case "UploadHistory":
-          return chrome.history.search('', (res) => sendResponse(res));
-
+          chrome.identity.getProfileUserInfo((res) => {
+            console.log('identity: ', res);
+            sendResponse(res);
+          });
+          break;
+        case "history":
+          chrome.history.search({text: ''}, (res) => {
+            console.log('res from history in back: ', res);
+            sendResponse(res);
+          });
+          break;
       }
 
       return true;
