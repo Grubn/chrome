@@ -2,6 +2,7 @@ import React from 'react';
 import fetch from 'isomorphic-fetch';
 import { Motion, spring } from 'react-motion';
 import SideBar from './SideBar.js';
+import Loading from './Loading.js';
 
 const styles = {
     zIndex: 10000,
@@ -29,7 +30,7 @@ class Oracle extends React.Component {
     this.toggleOpen = this._toggleOpen.bind(this);
   }
 
-  ComponentDidMount () {
+  componentDidMount () {
     // chrome.runtime.sendMessage({
     //   type: "authenticate",
     // }, (res) => {
@@ -77,6 +78,7 @@ class Oracle extends React.Component {
           (iStyle) =>
             <div style={Object.assign({}, styles, iStyle)}>
               <div style={{flex: 1}} onClick={this.toggleOpen} />
+                      <Loading/>
               <SideBar {...this.state}/>
             </div>
         }
