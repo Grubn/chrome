@@ -6,7 +6,7 @@ import Card from './Card';
 const styles = {
   root: {
     fontSize: 14,
-    maxWidth: 400,
+    width: 460,
     height: '100vh',
     zIndex: 100000,
     backgroundImage: 'linear-gradient(90deg, rgba(8,8,8,0),rgba(8,8,8,0.1) 24px, rgba(8,8,8,0.18) 96px)',
@@ -52,6 +52,20 @@ class SideBar extends React.Component {
   }
 }
 SideBar.defaultProps = {
-  cards: [{type: 'google-maps', data: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12159.142495365222!2d-74.165099!3d40.36927755!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1470541281416'}, {type: 'yelp-information'}, {}, {}, {}, {}, {}, {}]
+  cards: [
+    {
+      type: 'google-maps',
+      data: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12159.142495365222!2d-74.165099!3d40.36927755!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1470541281416',
+      tools: [{name: 'google', url: ''}],
+      title: 'My Location'
+  }, {
+      type: 'yelp-information',
+      data: '',
+      tools: []
+    }, {
+
+    }, {
+
+    }]
 }
 export default SideBar;

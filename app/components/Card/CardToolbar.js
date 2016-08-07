@@ -6,23 +6,21 @@ import React from 'react';
  */
 function CardToolbar (props) {
   return (
-    <div style={styles.toolbar}>
+    <div style={styles}>
     {
-      props.tools.map((t, i) => {
-        <a href={t.url}>{name}</a>
-      })
+      (props.tools) ? props.tools.map((t, i) => 
+        <a href={t.url} key={i}><img alt={t.name} src={chrome.extension.getURL(`assets/${t.name}.jpg`)}/></a>
+      ) : null
     }
     </div>
   );
 }
 
 const styles = {
-  toolbar: {
     marginTop: 4,
     backgroundColor: 'rgb(248, 248, 248)',
     borderTop: '1px solid #E4E4E4',
     height: 50
-  }
 }
 
 export default CardToolbar;

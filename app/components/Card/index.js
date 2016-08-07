@@ -1,7 +1,7 @@
 import React from 'react';
 
 import IframeCard from './IframeCard.js';
-
+import RatingCard from './RatingCard.js';
 import CardToolbar from './CardToolbar';
 
 import StarRatingComponent from 'react-star-rating-component';
@@ -12,7 +12,7 @@ function Card(props) {
   switch (props.type) {
     case 'google-maps':
     case 'youtube-video':
-      inner = (<IframeCard data={props.data} />);
+      inner = (<IframeCard {...props}/>);
       break;
     case 'google-calendar':
       inner = <p></p>;
@@ -23,27 +23,9 @@ function Card(props) {
     case 'wikipedia-information':
       inner = <p></p>;
       break;
-    case 'yelp-information':
-      inner = (
-        <div>
-          <div style={styles.yelp}>
-            <div>
-              <h2>Crif Dogs</h2>
-              <h4>Hot Dogs, American</h4>
-              <StarRatingComponent
-                style={styles.yelp.rating}
-                name="yelpRating"
-                editing={false}
-                starCount={5}
-                value={5}
-                /> <p style={styles.yelp.ratingScore}>1879 Reviews</p>
-            </div>
-            <img src="http://newyork.seriouseats.com/images/20081216-crifdogs-goodmorning.jpg" width="50px" height="50px"/>
-          </div>
-          <CardToolbar />
-        </div>
-      );
-      break;
+    //case 'yelp-information':
+      //inner = (<RatingCard data={props.data}/>)
+      //break;
     case 'uber-request':
       inner = <p></p>;
       break;
@@ -54,10 +36,11 @@ function Card(props) {
     </div>
   );
 }
+
 const styles = {
   card: {
     boxShadow: '0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.28)',
-    width: (innerWidth > 640) ? '95%' : '80%',
+    width: '380px',
     backgroundColor: 'rgb(248, 248, 248)',
     margin: 10,
     flex: 1,
