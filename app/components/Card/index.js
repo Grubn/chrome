@@ -9,21 +9,39 @@ import StarRatingComponent from 'react-star-rating-component';
 function Card(props) {
   let inner = null;
 
-  switch (props.type) {
+  switch (props.data.get('type')) {
     case 'google-maps':
     case 'youtube-video':
     case 'google-calendar':
-      inner = (<IframeCard type={props.data.get('type')} title={props.data.get('term')} />);
+      inner = (<IframeCard data={props.data.get('data')}
+                           type={props.data.getIn(['metadata', 'type'])}
+                           term={props.data.get(['metadata', 'term'])}
+                           category={this.data.get(['metadata', 'category'])}/>);
       break;
     case 'twitter-tweet':
-      inner = (<RatingCard {...props}/>);
+      inner = (<RatingCard author={props.data.getIn(['data', 'author'])}
+                           authorImage={props.data.getIn(['data', 'authorImage'])}
+                           tweet={props.data.getIn(['data', 'tweet'])}
+                           type={props.data.getIn(['metadata', 'type'])}
+                           term={props.data.getIn(['metadata', 'term'])}
+                           category={props.data.getIn(['metadata', 'category'])}/>);
       break;
     case 'wikipedia-information':
-      inner = (<ArticleCard {...props}/>);
+      inner = (<ArticleCard data={props.data.get('data')}
+                            type={props.data.getIn(['metadata', 'type'])}
+                            term={props.data.getIn(['metadata', 'term'])}
+                            category={props.data.getIn(['metadata', 'category'])}
+                            />);
       break;
-    //case 'yelp-information':
-      //inner = (<RatingCard data={props.data}/>)
-      //break;
+    case 'yelp-information':
+      inner = (<RatingCard name={props.data.getIn(['data', 'name'])}
+                           authorImage={props.data.getIn(['data', 'authorImage'])}
+                           description={props.data.getIn(['data', 'description'])}
+                           type={props.data.getIn(['metadata', 'type'])}
+                           term={props.data.getIn(['metadata', 'term'])}
+                           category={props.data.getIn(['metadata', 'category'])}
+                />)
+      break;
     case 'uber-request':
       inner = <p></p>;
       break;
