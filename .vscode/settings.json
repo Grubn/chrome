@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    "node_modules": "explorerExcludedFiles",
+    "temp": "explorerExcludedFiles",
+    ".tmp": "explorerExcludedFiles",
+    "dist": "explorerExcludedFiles",
+    ".sass-cache": "explorerExcludedFiles",
+    "app/bower_components": "explorerExcludedFiles",
+    "test/bower_components": "explorerExcludedFiles",
+    "package": "explorerExcludedFiles",
+    "app/scripts": "explorerExcludedFiles"
+  }
+}

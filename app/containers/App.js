@@ -12,7 +12,7 @@ const root = (
 );
 
 let target = document.createElement('div');
-target.setAttribute('id', 'app');
+target.setAttribute('id', 'app-oracle');
 document.body.appendChild(target);
 
-render(root, document.getElementById('app'));
+render(root, document.getElementById('app-oracle'));
