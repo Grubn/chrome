@@ -10,7 +10,8 @@ const styles = {
     top: 0,
     right: 0,
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    color: '#444'
 }
 
 
@@ -35,11 +36,12 @@ class Oracle extends React.Component {
     return (
       <Motion
         defaultStyle={{ opacity: 0 }}
-        style={{ opacity: spring((this.state.open) ? 1 : 0, { stiffness: 100, damping: 100 }) }}
+        style={{ opacity: spring((this.state.open) ? 1 : 0, { stiffness: 10, damping: 10 }), zIndex: (this.state.open) ? 10000 : -10000 }}
         onClick={this._toggleOpen}>
         {
           (iStyle) =>
             <div style={Object.assign({}, styles, iStyle)}>
+              <div style={{flex: 1}} onClick={this.toggleOpen} />
               <SideBar {...this.state}/>
             </div>
         }
@@ -48,4 +50,4 @@ class Oracle extends React.Component {
   }
 }
 
-export default Oracle;
+export default Oracle;  

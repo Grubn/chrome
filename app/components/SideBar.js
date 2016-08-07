@@ -1,7 +1,7 @@
 import React from 'react';
 import { Motion, StaggeredMotion, spring } from 'react-motion';
 import { connect } from 'react-redux';
-import Card from './Card.js';
+import Card from './Card';
 
 const styles = {
   root: {
@@ -38,7 +38,7 @@ class SideBar extends React.Component {
                     (<div style={styles.cardContainer}>
                       {
                         sStyles.map((sStyle, j) =>
-                          <Card style={{ opacity: (1 - sStyle.x), transform: `translateY(${sStyle.x * 64}px)` }} key={j} />
+                          <Card style={{ opacity: (1 - sStyle.x), transform: `translateY(${sStyle.x * 64}px)` }} key={j} {...this.props.cards[j]}/>
                         )
                       }
                     </div>)
@@ -51,6 +51,6 @@ class SideBar extends React.Component {
   }
 }
 SideBar.defaultProps = {
-  cards: [{}, {}, {}, {}, {}, {}, {}, {}]
+  cards: [{type: 'google-maps', data: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12159.142495365222!2d-74.165099!3d40.36927755!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1470541281416'}, {}, {}, {}, {}, {}, {}, {}]
 }
 export default SideBar;
