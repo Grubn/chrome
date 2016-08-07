@@ -36,8 +36,7 @@ const styles = {
     width: (innerWidth > 640) ? '95%' : '80%',
     backgroundColor: 'rgb(248, 248, 248)',
     margin: 10,
-    flex: 1,
-    padding: 8
+    flex: 1
   }
 };
 
