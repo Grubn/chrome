@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import fetch from 'isomorphic-fetch';
 import { Motion, spring } from 'react-motion';
 import SideBar from './SideBar.js';
@@ -85,4 +86,19 @@ class Oracle extends React.Component {
   }
 }
 
-export default Oracle;
+function mapStateToProps (state) {
+  return {
+
+  };
+}
+
+function mapDispatchToProps (props) {
+  return {
+
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Oracle);
