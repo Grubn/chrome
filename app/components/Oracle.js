@@ -142,8 +142,8 @@ class Oracle extends React.Component {
           })
         } }/>
         <div style={Object.assign({}, styles, {zIndex: this.state.open ? 10000 : -10000})}>
-        <div style={{ flex: 1 }} onClick={this.toggleOpen} style={borderRight: () }/>
-        <SideBar open={(this.state.animation === 2 && open)}/>
+        <div style={{ flex: 1 }} onClick={this.toggleOpen} />
+        <SideBar open={(this.state.animation === 2 && open)} cards={this.props.nlp}/>
         </div>
       </div>
     );

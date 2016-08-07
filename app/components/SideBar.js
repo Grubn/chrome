@@ -40,7 +40,7 @@ class SideBar extends React.Component {
                         (<div style={styles.cardContainer}>
                           {
                             sStyles.map((sStyle, j) =>
-                              <Card style={{ opacity: (1 - sStyle.x), transform: `translateX(${sStyle.x * 64}px)` }} key={j} {...this.props.cards[j]}/>
+                              <Card style={{ opacity: (1 - sStyle.x), transform: `translateX(${sStyle.x * 64}px)` }} key={j} data={this.props.cards[j]}/>
                             )
                           }
                         </div>)
@@ -54,20 +54,6 @@ class SideBar extends React.Component {
   }
 }
 SideBar.defaultProps = {
-  cards: [
-    {
-      type: 'google-maps',
-      data: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12159.142495365222!2d-74.165099!3d40.36927755!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1470541281416',
-      tools: [{ name: 'google', url: '' }],
-      title: 'My Location'
-    }, {
-      type: 'yelp-information',
-      data: '',
-      tools: []
-    }, {
-
-    }, {
-
-    }]
+  cards: []
 }
 export default SideBar;

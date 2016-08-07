@@ -3,7 +3,7 @@ import React from 'react';
 import IframeCard from './IframeCard.js';
 import RatingCard from './RatingCard.js';
 import CardToolbar from './CardToolbar';
-
+import ArticleCard from './ArticleCard.js';
 import StarRatingComponent from 'react-star-rating-component';
 
 function Card(props) {
@@ -13,7 +13,7 @@ function Card(props) {
     case 'google-maps':
     case 'youtube-video':
     case 'google-calendar':
-      inner = (<IframeCard {...props}/>);
+      inner = (<IframeCard type={props.data.get('type')} title={props.data.get('term')} />);
       break;
     case 'twitter-tweet':
       inner = (<RatingCard {...props}/>);
