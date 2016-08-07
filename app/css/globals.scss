@@ -1,0 +1,96 @@
+#app-oracle {
+  * {
+    font-size: 16px;
+    font-weight: 300;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-style: normal;
+    font-size: 3em;
+    font-weight: 100;
+  }
+  h2 {
+    font-size: 2em;
+  }
+  h3 {
+    font-size: 1.5em;
+  }
+  h4 {
+    font-size: 1.25em;
+  }
+  h5 {
+    font-size: 1.12em;
+  }
+  h6 {
+    font-size: 1.05em;
+  }
+  img {
+    max-width: 100%;
+  }
+  p {
+    line-height: 2.5em;
+  }
+  img {
+    display: block;
+    margin: auto;
+  }
+  blockquote {
+    border-left-width: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px 20px;
+    margin: 0 0 1.1em;
+    border-left: 5px solid rgba(0, 0, 0, 0.075);
+  }
+  strong {
+    font-weight: 500;
+  }
+  &> p {
+    padding: 1em 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol {
+    padding: 1em 0;
+  }
+  a {
+    color: #eefeff;
+    text-decoration: underline;
+  }
+  ul {
+    list-style: disc;
+    padding-left: 2em;
+  }
+  ol {
+    list-style: circle;
+    padding-left: 2em;
+  }
+  ul,
+  ol {
+    line-height: 1.5em;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 20px;
+  }
+}

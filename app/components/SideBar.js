@@ -6,7 +6,7 @@ import Card from './Card';
 const styles = {
   root: {
     fontSize: 14,
-    width: (innerWidth > 640) ? '40vw' : '100vw',
+    maxWidth: 400,
     height: '100vh',
     zIndex: 100000,
     backgroundImage: 'linear-gradient(90deg, rgba(8,8,8,0),rgba(8,8,8,0.1) 24px, rgba(8,8,8,0.18) 96px)',
