@@ -51,6 +51,6 @@ class SideBar extends React.Component {
   }
 }
 SideBar.defaultProps = {
-  cards: [{type: 'google-maps', data: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12159.142495365222!2d-74.165099!3d40.36927755!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1470541281416'}, {}, {}, {}, {}, {}, {}, {}]
+  cards: [{type: 'google-maps', data: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12159.142495365222!2d-74.165099!3d40.36927755!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1470541281416'}, {type: 'yelp-information'}, {}, {}, {}, {}, {}, {}]
 }
 export default SideBar;
